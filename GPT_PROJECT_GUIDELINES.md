@@ -224,3 +224,28 @@ GPT는 이 메모를 자동으로 인식하고, 이후 모든 단계 대화에�
   - `start_datetime = datetime.combine(start_date, start_time)`
   - `end_datetime = datetime.combine(end_date, end_time)`
 - 이후 다중 사용자 확장 시, 이 dict를 list로 감싸는 형태로 구조 확장 가능
+
+## 4단계 메모
+
+### ✅ 정리 요약
+
+- `check_ticket.py` 생성 및 `check_ticket(user_config: dict) -> list` 함수 구현 완료
+- 네이버 항공권의 비공식 XHR API 활용 (`/api/booking/availabilities`)
+  - 출발/도착공항, 날짜에 따라 JSON 응답 수신
+  - 가격, 항공사, 출발/도착 시각, 예약 가능 여부 등을 포함
+- 입력 기준은 `user_config.get_user_config()`에서 받은 dict 기반
+- 날짜 범위 내 반복 조회 + 출발시각 범위 필터링 + `status == "AVAILABLE"` 조건 항공편만 추출
+- 반환 형식: list of dicts  
+  (ex: 항공편 정보 `{airline, departure_time, arrival_time, price, status}` 포함)
+- Git 커밋 메시지 예시:
+  ```
+  feat: 네이버 항공권 조회 기능 구현 (check_ticket)
+  ```
+
+### 🧠 기억 보존 & 기준 유지 메모
+
+- `check_ticket()` 함수는 이후 단계(알림, 감시 루프)의 핵심 입력 소스로 사용됨
+- `user_config.py`로부터 받은 datetime 범위를 기준으로 항공편 필터링
+- API 사용 방식은 HTML 크롤링 대비 안정적이며, 유지보수에 유리함
+- 항공편 정보는 필터링 결과만 포함하며, **비교를 위한 이전 상태 저장은 감시 루프에서 처리**
+- 향후 다중 사용자 구조로 확장 시에도 입력 dict만 리스트로 확장하면 동일 구조 유지 가능
