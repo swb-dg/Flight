@@ -1,5 +1,11 @@
 import streamlit as st
 from datetime import date, time, timedelta
+import streamlit as st
+password = st.text_input("비밀번호를 입력하세요", type="password")
+if password != "jeju1234":
+    st.warning("올바른 비밀번호를 입력해주세요.")
+    st.stop()
+
 
 # 제목
 st.title("✈️ 항공권 알림 등록")
