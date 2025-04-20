@@ -139,3 +139,35 @@
 GPT는 이 메모를 자동으로 인식하고, 이후 모든 단계 대화에서 일관되게 반영해야 합니다.
 
 ---
+
+## 1단계 메모
+
+### ✅ 정리 요약
+
+- 로컬 Git 초기화 완료  
+  위치: `C:/Users/USER/flight-ticket-alert/`  
+  (Git Bash 기준: `~/flight-ticket-alert/`)
+- GitHub 레포지토리 연결 및 `main`, `dev` 브랜치 구성 완료
+- 초기 파일 생성:
+  - `README.md`, `.gitignore`, `requirements.txt`
+  - `app.py`, `check_ticket.py`, `user_config.py`, `send_alert.py`, `monitor.py`
+- 커밋 메시지 전략 도입: `"feat:"`, `"chore:"` 등 prefix 사용
+- `dev` 브랜치 기준으로 개발 시작
+- `.md` 문서도 GitHub에 등록하여 Markdown 뷰 활용 중
+
+### 🧠 기억 보존 & 기준 유지 메모 (GPT 필수 인식 항목)
+
+- 📍 **작업 위치는 항상**:  
+  `C:/Users/USER/flight-ticket-alert/`  
+  또는 `~/flight-ticket-alert/`
+- 📁 파일 구조 및 작업 기준은 해당 디렉토리 하위로만 구성
+- 브랜치 전략:
+  - `main`: 배포용 (항상 안정 상태 유지)
+  - `dev`: 실시간 개발용 (기본 작업 공간)
+  - 필요 시 `feature/*` 브랜치에서 세부 기능 개발 후 `dev`로 merge
+- 커밋 메시지 규칙 (접두어):
+  - `feat:` 기능 추가
+  - `fix:` 버그 수정
+  - `chore:` 설정, 초기화, 구조 정리
+  - `docs:` 문서 작성 및 수정
+- GPT는 이 기준을 반드시 기억하고, 이후 대화에서 흐트러지지 않도록 유지해야 함
