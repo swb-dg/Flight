@@ -1,1 +1,10 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore environment config
+.env
+secrets.toml
+
+# Ignore stop list for alert system
 stop_list.json

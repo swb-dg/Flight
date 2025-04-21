@@ -1,6 +1,16 @@
-# send_alert.py
-
+import os
 import smtplib
+from email.mime.text import MIMEText
+
+try:
+    import streamlit as st
+    EMAIL_ADDRESS = st.secrets["EMAIL_ADDRESS"]
+    EMAIL_PASSWORD = st.secrets["EMAIL_PASSWORD"]
+except Exception:
+    from dotenv import load_dotenv
+    load_dotenv()
+    EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+    EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
