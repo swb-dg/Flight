@@ -18,9 +18,9 @@ def check_ticket(user_config: dict) -> list:
 
     # 날짜 범위 생성
     curr_date = start_dt.date()
-    end_date = end_dt.date()
+    end_date_only = end_dt.date()
 
-    while curr_date <= end_date:
+    while curr_date <= end_date_only:
         # 날짜별 요청 URL 생성
         url = (
             "https://flight.naver.com/api/booking/availabilities"
@@ -47,8 +47,9 @@ def check_ticket(user_config: dict) -> list:
                 price = flight.get("price", {}).get("totalPrice", 0)
                 status = flight.get("status")
 
-                # 시간 필터링
-                if not (start_dt <= dep_time <= end_dt):
+                # 시간 필터링 (timezone 제거 후 비교)
+                dep_time_naive = dep_time.replace(tzinfo=None)
+                if not (start_dt <= dep_time_naive <= end_dt):
                     continue
 
                 # 예약 가능 여부 확인
