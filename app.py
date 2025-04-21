@@ -24,12 +24,21 @@ tab1, tab2 = st.tabs(["항공권 등록", "알림 중단 요청"])
 
 with tab1:
     st.title("✈️ 항공권 알림 등록")
-    departure = st.selectbox("출발 공항", ["GMP", "ICN"])
-    arrival = st.selectbox("도착 공항", ["CJU"])
-    start_date = st.date_input("탑승 시작일")
-    start_time = st.time_input("탑승 시작 시간")
-    end_date = st.date_input("탑승 종료일")
-    end_time = st.time_input("탑승 종료 시간")
+    airports = ["GMP", "ICN", "CJU"]
+    col1, col2 = st.columns(2)
+    with col1:
+        departure = st.selectbox("출발 공항", airports)
+    with col2:
+        arrival = st.selectbox("도착 공항", airports)
+
+    col3, col4 = st.columns(2)
+    with col3:
+        start_date = st.date_input("탑승 시작일")
+        start_time = st.time_input("탑승 시작 시간", step=3600)
+    with col4:
+        end_date = st.date_input("탑승 종료일")
+        end_time = st.time_input("탑승 종료 시간", step=3600)
+
     email = st.text_input("이메일 주소")
 
     if st.button("등록"):
