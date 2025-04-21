@@ -3,6 +3,8 @@ import streamlit as st
 import json
 import os
 from user_config import get_user_config
+from check_ticket import check_ticket
+from send_alert import send_email_alert
 
 STOP_LIST_PATH = "stop_list.json"
 
@@ -52,6 +54,19 @@ with tab1:
             "email": email
         }
         st.success("등록이 완료되었습니다.")
+        
+        try:
+            config = get_user_config()
+            st.info("🔍 항공편 확인 중...")
+            matching_flights = check_ticket(config)
+            st.write("✅ 확인된 항공편:", matching_flights)
+            if matching_flights:
+                send_email_alert(config, matching_flights)
+                st.success("📩 알림 이메일이 전송되었습니다.")
+            else:
+                st.warning("조건에 맞는 예약 가능 항공편이 없습니다.")
+        except Exception as e:
+            st.error(f"❌ 처리 중 오류 발생: {e}")
 
 with tab2:
     st.title("🔕 알림 중단 요청")
