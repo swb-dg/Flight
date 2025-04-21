@@ -56,7 +56,8 @@ with tab1:
         st.success("등록이 완료되었습니다.")
         
         try:
-            config = get_user_config()
+            raw_input = st.session_state["user_input"]
+            config = get_user_config(raw_input)  # ✅ 인자 전달 수정
             st.info("🔍 항공편 확인 중...")
             matching_flights = check_ticket(config)
             st.write("✅ 확인된 항공편:", matching_flights)
