@@ -26,7 +26,7 @@ tab1, tab2 = st.tabs(["항공권 등록", "알림 중단 요청"])
 
 with tab1:
     st.title("✈️ 항공권 알림 등록")
-    airports = ["GMP", "ICN", "CJU"]
+    airports = ["GMP", "ICN", "CJU", "TAE"]
     col1, col2 = st.columns(2)
     with col1:
         departure = st.selectbox("출발 공항", airports)
